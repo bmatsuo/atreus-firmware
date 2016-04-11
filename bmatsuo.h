@@ -76,7 +76,7 @@ void (*layer_functions[])(void) = {reset, activate_fn, layer_jump, hwdvorak};
 
 void per_cycle() {
   if(fn_decay > 1) {
-    current_layer = layers[current_layer_number + 1];
+    current_layer = layers[current_layer_number + (current_layer_number - base_layer <= 1 ? 1 : -1)];
     fn_decay--;
   } else if(fn_decay == 1) {
     current_layer_number = layer_to_jump;
